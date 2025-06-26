@@ -266,6 +266,7 @@
         ];
         
         let isSpinning = false;
+        let currentRotation = 0;
 
         function spinWheel() {
             if (isSpinning) return;
@@ -279,21 +280,22 @@
             button.textContent = 'SPINNING...';
             result.innerHTML = '<div class="result-text">🎯 Spinning...</div>';
             
-            const randomRotation = Math.floor(Math.random() * 360) + 1440;
-            wheel.style.transform = `rotate(${randomRotation}deg)`;
+            const spinAmount = Math.floor(Math.random() * 360) + 1800;
+            currentRotation += spinAmount;
+            wheel.style.transform = `rotate(${currentRotation}deg)`;
             
             setTimeout(() => {
-                const normalizedRotation = randomRotation % 360;
+                const normalizedRotation = (360 - (currentRotation % 360)) % 360;
                 let selectedIndex;
                 
                 if (normalizedRotation >= 315 || normalizedRotation < 45) {
                     selectedIndex = 0;
                 } else if (normalizedRotation >= 45 && normalizedRotation < 135) {
-                    selectedIndex = 3;
+                    selectedIndex = 1;
                 } else if (normalizedRotation >= 135 && normalizedRotation < 225) {
                     selectedIndex = 2;
                 } else {
-                    selectedIndex = 1;
+                    selectedIndex = 3;
                 }
                 
                 const selectedTopic = topics[selectedIndex];
