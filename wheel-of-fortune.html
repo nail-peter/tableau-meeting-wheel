@@ -285,24 +285,9 @@
             wheel.style.transform = `rotate(${currentRotation}deg)`;
             
             setTimeout(() => {
-                const normalizedRotation = (360 - (currentRotation % 360)) % 360;
-                let selectedIndex;
-                
-                if (normalizedRotation >= 315 || normalizedRotation < 45) {
-                    selectedIndex = 0;
-                } else if (normalizedRotation >= 45 && normalizedRotation < 135) {
-                    selectedIndex = 1;
-                } else if (normalizedRotation >= 135 && normalizedRotation < 225) {
-                    selectedIndex = 2;
-                } else {
-                    selectedIndex = 3;
-                }
-                
-                const selectedTopic = topics[selectedIndex];
-                
                 result.innerHTML = `
                     <div class="result-text">
-                        🎉 Your topic: <strong>${selectedTopic}</strong><br>
+                        🎉 Check the wheel above for your topic!<br>
                         <small>Time to prepare your demonstration!</small>
                     </div>
                 `;
